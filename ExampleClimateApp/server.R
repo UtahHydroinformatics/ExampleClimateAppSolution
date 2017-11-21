@@ -11,13 +11,13 @@ shinyServer(function(input, output) {
 
   output$selected_rcp <- renderText({
     paste('Viewing climate data at',input$site,'between',
-          input$futuredates[1],'and',input$futuredates[2],'for',input$rcp)
+          input$dates[1],'and',input$dates[2],'for',input$rcp)
   })
 
   output$futureplot <- renderPlot({
     plotdata <- subset(prcp_proj,Station==input$site &
-                         Date >= input$futuredates[1] &
-                         Date<= input$futuredates[2])
+                         Date >= input$dates[1] &
+                         Date<= input$dates[2])
     if(input$checkbox==TRUE){
       ggplot()+
         geom_line(data=plotdata,aes(x=plotdata$Date,y=plotdata[,input$rcp]),color='red')+
@@ -33,8 +33,8 @@ shinyServer(function(input, output) {
   
   futureavg <- reactive({
     futuredata <- subset(prcp_proj,Station==input$site &
-                         Date >= input$futuredates[1] &
-                         Date<= input$futuredates[2])
+                         Date >= input$dates[1] &
+                         Date<= input$dates[2])
     futuremean<- mean(futuredata[,input$rcp])
     return(futuremean)
   })

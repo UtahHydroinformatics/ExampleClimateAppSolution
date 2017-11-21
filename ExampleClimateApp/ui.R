@@ -27,7 +27,7 @@ shinyUI(fluidPage(
                   choices=c('RCP2_6','RCP4_5','RCP6_0','RCP8_5'), 
                   inline=TRUE,
                   selected = NULL),
-      dateRangeInput("futuredates",label = h3("Future date range"),start="2044-01-02",end="2057-01-01"),
+      dateRangeInput("dates",label = h3("Date range"),start="2005-01-02",end="2057-01-01"),
       checkboxInput("checkbox", label = h3("Display Observed Data"), value = FALSE)
      
     ),
